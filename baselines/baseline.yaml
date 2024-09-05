@@ -1,0 +1,26 @@
+data_path: datasets/
+benchmark_filename: [train, validation, test]
+field_separator: ","
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+RATING_FIELD: rating
+threshold: { "rating": 0 }
+
+load_col:
+  inter: [user_id, item_id, rating, "review"]
+group_by_user: False
+metrics: ["RMSE", "MAE"]
+valid_metric: RMSE
+topk: [10, 50]
+# valid_metric: MRR@50
+metric_decimal_place: 4
+eval_step: 1
+save_dataset: False
+save_dataloaders: False
+reproducibility: False
+seed: 2020
+eval_args:
+  mode: labeled
+  order: RO
+  split: { "LS": "valid_and_test" }
+  group_by: none
